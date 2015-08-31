@@ -32,6 +32,12 @@ _.extend(UASeparatorModule.prototype, {
   // correct the constructor pointer because it points to UAModule
   constructor: UASeparatorModule,
 
+  texts: {
+    default: {
+      sep: 'or',
+    },
+  },
+
   configure: function(options) {
     UALog.trace('configure ' + this._id);
     // console.log(options);
@@ -39,21 +45,7 @@ _.extend(UASeparatorModule.prototype, {
     this.texts = _.defaults(options.texts || {}, this.texts);
   },
 
-  texts: {
-    default: {
-      sep: 'or',
-    },
-  },
-
   text: function() {
     return this.getText('sep');
   },
 });
-
-/*
-UserAccounts.startup(function(){
-  if (!!this.oauth && !!this.password) {
-    this.separator.visible = true;
-  }
-});
-*/
