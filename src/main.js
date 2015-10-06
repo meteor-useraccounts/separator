@@ -13,6 +13,4 @@ UALog.trace('Loading main.js');
 
 
 UALog.trace('Adding separator module');
-var separator = new UASeparatorModule();
-
-UserAccounts.registerModule(separator);
+UserAccounts.registerModule(new UASeparatorModule());
