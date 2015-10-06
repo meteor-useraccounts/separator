@@ -1,4 +1,5 @@
 /* global
+    s: false,
     UALog: false,
     UAModule: false,
     UASeparatorModule: true
@@ -13,39 +14,50 @@ UALog.trace('Loading separator_module.js');
 
 
 // define the Student class
-UASeparatorModule = function () {
+UASeparatorModule = function _UASeparatorModule() {
+  var self = this;
+
   // Call the parent constructor
   UAModule.call(this);
 
-  this._id = 'separator';
-  this.position = 40;
-  this.template = 'uaSeparator';
-  this.templateClass = 'separator';
-  this.visible = true;
+  self._id = 'separator';
+  self.position = 40;
+  self.skins = {};
+  self.template = 'uaSeparator';
+  self.templateClass = 'separator';
+  self.visible = true;
 };
 
 
 // inherit UAModule
 UASeparatorModule.prototype = new UAModule();
 
+
 _.extend(UASeparatorModule.prototype, {
-  // correct the constructor pointer because it points to UAModule
   constructor: UASeparatorModule,
 
+  /**
+   *
+   */
   texts: {
-    default: {
+    'default': {
       sep: 'or',
     },
   },
 
-  configure: function(options) {
-    UALog.trace('configure ' + this._id);
-    // console.log(options);
-
-    this.texts = _.defaults(options.texts || {}, this.texts);
+  /**
+   *
+   */
+  textTransforms: {
+    'default': null,
+    sep: s.titleize,
   },
 
-  text: function() {
-    return this.getText('sep');
+  configure: function configure(options) {
+    var self = this;
+
+    UALog.trace('UATitleModule.configure');
+
+    self.texts = _.defaults(options.texts || {}, self.texts);
   },
 });
