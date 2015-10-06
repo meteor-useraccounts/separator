@@ -10,4 +10,4 @@
 //  Create the logger for this package
 // ------------------------------------
 UALog = new Logger('useraccounts:separator');
-UserAccounts.setLogLevel('separator', UALog);
+UserAccounts.setLogLevel(UALog);
